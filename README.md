@@ -13,16 +13,23 @@ Alcuni aspetti chiave della cittadinanza digitale includono:
 L'educazione alla cittadinanza digitale è fondamentale, soprattutto per i giovani, per prepararli a affrontare le sfide e le opportunità.
 <details>
 <summary>
-### 1. Sicurezza Online </summary>
+
+### 1. Sicurezza Online 
+</summary>
+
 La sicurezza online è crucial per proteggere informazioni personali da furti, attacchi informatici e altri rischi. Questo include:
 - **Utilizzo di password sicure**: Creare password complesse e uniche per ogni account.
 - **Autenticazione a due fattori (2FA)**: Attivare questa funzione per aggiungere un ulteriore livello di sicurezza.
 - **Consapevolezza delle truffe**: Riconoscere email o messaggi sospetti, come phishing e truffe online.
 - **Aggiornamenti software**: Mantenere sempre aggiornati i dispositivi e il software per correggere vulnerabilità di sicurezza.
+
 </details>
 <details>
 <summary>
-### 2. Privacy</summary>
+
+### 2. Privacy
+</summary>
+
 La privacy è una delle preoccupazioni principali nella vita digitale. Aspetti essenziali includono:
 - **Diritti legali**: Conoscere le leggi locali e globali sulla protezione dei dati, come il GDPR in Europa.
 - **Impostazioni sulla privacy**: Saper gestire le impostazioni della privacy sui social media e altre piattaforme per controllare chi può vedere le proprie informazioni.
@@ -30,7 +37,10 @@ La privacy è una delle preoccupazioni principali nella vita digitale. Aspetti e
 </details>
 <details>
 <summary>
-### 3. Comportamento Etico</summary>
+
+### 3. Comportamento Etico
+</summary>
+
 Il comportamento etico online è fondamentale per creare un ambiente rispettoso e sicuro. Ecco alcuni punti chiave:
 - **Rispetto reciproco**: Interagire con gli altri in modo cortese, evitando bullismo, trolling e commenti tossici.
 - **Verifica delle fonti**: Prima di condividere informazioni, è importante verificarne l'accuratezza per combattere la disinformazione.
@@ -39,7 +49,10 @@ Il comportamento etico online è fondamentale per creare un ambiente rispettoso 
 </details>
 <details>
 <summary>
-### 4. Alfabetizzazione Informatica</summary>
+
+### 4. Alfabetizzazione Informatica
+</summary>
+
 L'alfabetizzazione informatica è essenziale per l'efficace utilizzo delle tecnologie digitali. Alcuni aspetti rilevanti includono:
 - **Competenze informatiche di base**: Saper utilizzare computer, tablet e smartphone, e conoscere i software di produttività come word processor, fogli di calcolo, e software per presentazioni.
 - **Navigazione sicura**: Essere capaci di
