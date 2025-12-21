@@ -58,4 +58,6 @@ L'alfabetizzazione informatica è essenziale per l'efficace utilizzo delle tecno
 - **Navigazione sicura**: Essere capaci di
 </details>
 
+### SITOGRAFIA
 https://www.infocert.it/che-cose-la-pec-europea
+https://www.aranzulla.it/creare-una-password-sicura-al-100-3193.html
