@@ -7,6 +7,7 @@ Alcuni aspetti chiave della cittadinanza digitale includono:
 1. **Sicurezza online**: Comprendere come proteggere le informazioni personali e riconoscere le minacce informatiche.
    [Consigli per una password sicura](SPW.md)
 2. **Privacy**: Essere consapevoli dei diritti legati alla privacy e gestire le impostazioni sulla privacy sui vari servizi online.
+   [Due cose sulla privacy](PRIVACY.md)
 3. **Comportamento etico**: Rispettare gli altri e comprendere le implicazioni legali e morali delle proprie azioni online.
 4. **Alfabetizzazione informatica**: Avere competenze per utilizzare efficacemente le tecnologie digitali e accedere a informazioni reliable.
 5. **Partecipazione**: Coinvolgimento nelle discussioni civiche e sociali attraverso piattaforme online.
