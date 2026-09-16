@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Word per l'ufficio — corso base in aula</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@400;500;600&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#EDF0F3;
+  --page:#FFFFFF;
+  --ink:#141E27;
+  --soft:#5A6873;
+  --rule:#D6DDE4;
+  --accent:#1F4E79;
+  --mark:#A3105F;
+  --hi:#FFE56B;
+  --slab:"Zilla Slab",Georgia,serif;
+  --sans:"Source Sans 3","Segoe UI",system-ui,sans-serif;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#0D1319; --page:#161E25; --ink:#E4ECF2; --soft:#95A4B0;
+    --rule:#293540; --accent:#84B6E2; --mark:#EF83B4; --hi:#B99320;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0D1319; --page:#161E25; --ink:#E4ECF2; --soft:#95A4B0;
+  --rule:#293540; --accent:#84B6E2; --mark:#EF83B4; --hi:#B99320;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:var(--sans);font-size:17px;line-height:1.6;
+}
+.sheet{
+  max-width:940px;margin:0 auto;background:var(--page);
+  border-left:1px solid var(--rule);border-right:1px solid var(--rule);
+  padding:0 clamp(18px,5vw,64px) 72px;
+}
+h1,h2,h3{font-family:var(--slab);font-weight:600;line-height:1.15;margin:0}
+
+/* ---- frontespizio ---- */
+.cover{padding:clamp(48px,9vw,96px) 0 34px;border-bottom:2px solid var(--ink)}
+.cover h1{font-size:clamp(2.1rem,6vw,3.4rem);letter-spacing:-.015em;max-width:16ch}
+.cover p.lede{
+  font-size:1.12rem;color:var(--soft);max-width:60ch;margin:18px 0 0;
+}
+.meta{
+  display:grid;gap:1px;background:var(--rule);border:1px solid var(--rule);
+  grid-template-columns:repeat(auto-fit,minmax(150px,1fr));margin-top:34px;
+}
+.meta div{background:var(--page);padding:12px 14px}
+.meta dt{font-size:.82rem;color:var(--soft);margin:0}
+.meta dd{margin:2px 0 0;font-family:var(--slab);font-size:1.02rem}
+
+/* ---- sommario ---- */
+.toc{margin:34px 0 0;padding:0;list-style:none}
+.toc li{border-bottom:1px dotted var(--rule)}
+.toc a{
+  display:flex;gap:14px;align-items:baseline;padding:11px 2px;
+  text-decoration:none;color:var(--ink);
+}
+.toc a:hover{background:var(--paper)}
+.toc .n{font-family:var(--slab);color:var(--accent);min-width:1.4ch}
+.toc .t{flex:1}
+.toc .d{color:var(--soft);font-size:.9rem;white-space:nowrap}
+
+/* ---- sezioni ---- */
+section{padding-top:56px}
+.shead{display:flex;gap:16px;align-items:flex-start;border-top:2px solid var(--accent);padding-top:14px}
+.shead .num{
+  font-family:var(--slab);font-size:2.6rem;line-height:.9;color:var(--accent);
+  min-width:1.6ch;
+}
+.shead h2{font-size:clamp(1.45rem,3.6vw,1.95rem);max-width:20ch}
+.shead .dur{margin-top:6px;color:var(--soft);font-size:.92rem}
+.goal{
+  margin:20px 0 0;padding-left:16px;border-left:3px solid var(--hi);
+  font-size:1.05rem;max-width:66ch;
+}
+h3{font-size:1.06rem;margin:34px 0 10px;color:var(--accent)}
+p,li{max-width:70ch}
+ul.plain{padding-left:20px;margin:0}
+ul.plain li{margin:5px 0}
+
+/* ---- attività (balloon di commento) ---- */
+.act{
+  margin:18px 0;border:1px solid var(--rule);border-left:4px solid var(--mark);
+  background:var(--page);padding:16px 18px;
+}
+.act header{display:flex;flex-wrap:wrap;gap:10px;align-items:baseline;margin-bottom:8px}
+.act .code{
+  font-family:var(--slab);font-size:.9rem;color:var(--page);background:var(--mark);
+  padding:1px 8px;border-radius:2px;
+}
+.act h4{font-family:var(--slab);font-weight:600;font-size:1.1rem;margin:0;flex:1 1 auto}
+.act .min{color:var(--soft);font-size:.9rem}
+.act p{margin:0 0 8px}
+.done{
+  margin-top:10px;padding-top:10px;border-top:1px dotted var(--rule);
+  font-size:.95rem;color:var(--soft);
+}
+.done b{color:var(--ink);font-weight:600}
+
+.watch{background:var(--paper);border:1px solid var(--rule);padding:14px 18px;margin-top:26px}
+.watch h3{margin:0 0 6px;color:var(--ink);font-size:1rem}
+.watch ul{margin:0;padding-left:20px}
+
+/* ---- appendici ---- */
+.grid2{display:grid;gap:26px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+table{border-collapse:collapse;width:100%;font-size:.95rem;margin-top:10px}
+th,td{border:1px solid var(--rule);padding:8px 10px;text-align:left;vertical-align:top}
+th{background:var(--paper);font-family:var(--slab);font-weight:600}
+kbd{
+  font-family:var(--sans);font-size:.85em;border:1px solid var(--rule);
+  border-bottom-width:2px;border-radius:3px;padding:1px 5px;background:var(--paper);
+  white-space:nowrap;
+}
+footer{margin-top:64px;padding-top:18px;border-top:1px solid var(--rule);color:var(--soft);font-size:.9rem}
+a{color:var(--accent)}
+:focus-visible{outline:2px solid var(--mark);outline-offset:2px}
+@media (max-width:560px){
+  body{font-size:16px}
+  .shead{gap:10px}
+  .shead .num{font-size:1.9rem}
+}
+@media print{
+  body{background:#fff;font-size:11pt}
+  .sheet{border:0;max-width:none;padding:0}
+  section{break-inside:auto;page-break-before:always}
+  .act{break-inside:avoid}
+}
+</style>
+</head>
+<body>
+<div class="sheet">
+
+<div class="cover">
+  <h1>Word per l'ufficio</h1>
+  <p class="lede">Corso base in aula, costruito attorno agli esercizi: ogni incontro dedica venti minuti alla dimostrazione e il resto alle mani sulla tastiera, su documenti che somigliano a quelli veri.</p>
+  <dl class="meta">
+    <div><dt>Destinatari</dt><dd>Personale d'ufficio</dd></div>
+    <div><dt>Durata</dt><dd>8 ore, 4 incontri</dd></div>
+    <div><dt>Formato</dt><dd>Aula con docente</dd></div>
+    <div><dt>Partecipanti</dt><dd>8–14, una postazione a testa</dd></div>
+  </dl>
+
+  <ol class="toc">
+    <li><a href="#i1"><span class="n">1</span><span class="t">Dal foglio bianco al documento pulito</span><span class="d">2 h</span></a></li>
+    <li><a href="#i2"><span class="n">2</span><span class="t">Documenti lunghi: stili, sezioni, sommario</span><span class="d">2 h</span></a></li>
+    <li><a href="#i3"><span class="n">3</span><span class="t">Tabelle, immagini e oggetti</span><span class="d">2 h</span></a></li>
+    <li><a href="#i4"><span class="n">4</span><span class="t">Revisione, stampa unione, consegna</span><span class="d">2 h</span></a></li>
+    <li><a href="#prep"><span class="n">+</span><span class="t">Materiali da preparare e checklist docente</span><span class="d">—</span></a></li>
+  </ol>
+</div>
+
+<!-- INCONTRO 1 -->
+<section id="i1">
+  <div class="shead">
+    <div class="num">1</div>
+    <div>
+      <h2>Dal foglio bianco al documento pulito</h2>
+      <div class="dur">2 ore · 20′ dimostrazione, 70′ esercizi, 15′ pausa, 15′ ripasso</div>
+    </div>
+  </div>
+
+  <p class="goal">Alla fine dell'incontro i partecipanti sanno trovare i comandi senza cercarli a caso e formattano un testo usando gli strumenti giusti, non la barra spaziatrice.</p>
+
+  <h3>Cosa mostra il docente</h3>
+  <ul class="plain">
+    <li>Barra multifunzione, barra di accesso rapido, righello, visualizzazione Layout di stampa</li>
+    <li>Salvare e rinominare: <kbd>Ctrl+S</kbd>, <kbd>F12</kbd>, differenza fra .docx e PDF, salvataggio automatico e cronologia versioni</li>
+    <li>Segni di formattazione con <kbd>Ctrl+Maiusc+8</kbd>: il trucco che rende visibile tutto il resto del corso</li>
+    <li>Selezione rapida: doppio clic, triplo clic, <kbd>Ctrl</kbd>+clic, <kbd>Ctrl+A</kbd></li>
+    <li>Carattere e paragrafo: allineamenti, interlinea, spazio prima e dopo, rientri dal righello</li>
+    <li>Incolla speciale e Copia formato</li>
+  </ul>
+
+  <h3>Attività</h3>
+
+  <div class="act">
+    <header><span class="code">A1</span><h4>Caccia al comando</h4><span class="min">15′ · a coppie</span></header>
+    <p>Ogni coppia riceve un elenco di dodici comandi (interlinea, colore evidenziatore, maiuscole/minuscole, apice, bordi paragrafo, rientro sporgente…) e deve trovarli nella barra multifunzione. Si gioca a tempo, si commenta insieme dove erano nascosti i tre più difficili.</p>
+    <div class="done"><b>Fatto quando:</b> la coppia sa dire in quale scheda vive ogni comando, senza riaprirlo.</div>
+  </div>
+
+  <div class="act">
+    <header><span class="code">A2</span><h4>Il testo che arriva dal web</h4><span class="min">25′ · individuale</span></header>
+    <p>Si incolla in Word un testo copiato da una pagina web, pieno di font diversi, righe vuote e doppi spazi. Va riportato a uniformità: incolla speciale come solo testo, <kbd>Ctrl+H</kbd> per eliminare doppi spazi e paragrafi vuoti, poi un'unica formattazione per tutto il corpo.</p>
+    <div class="done"><b>Fatto quando:</b> con i segni di formattazione attivi non restano paragrafi vuoti né spazi doppi, e il testo ha un solo carattere.</div>
+  </div>
+
+  <div class="act">
+    <header><span class="code">A3</span><h4>Lettera commerciale in venti minuti</h4><span class="min">30′ · individuale</span></header>
+    <p>Da un testo grezzo fornito, si ricostruisce una lettera su carta intestata seguendo il modello stampato consegnato: mittente in alto a sinistra, luogo e data a destra, oggetto in grassetto, corpo giustificato con interlinea 1,15 e spazio dopo il paragrafo, saluti e firma allineati a destra.</p>
+    <div class="done"><b>Fatto quando:</b> la lettera sta in una pagina e nessun allineamento è ottenuto con spazi o invii ripetuti.</div>
+  </div>
+
+  <div class="watch">
+    <h3>Errori da intercettare subito</h3>
+    <ul>
+      <li>Premere Invio più volte per spostare il testo in basso</li>
+      <li>Allineare con la barra spaziatrice invece che con tabulazioni o allineamento</li>
+      <li>Formattare porzione per porzione invece di selezionare e applicare una volta sola</li>
+    </ul>
+  </div>
+</section>
+
+<!-- INCONTRO 2 -->
+<section id="i2">
+  <div class="shead">
+    <div class="num">2</div>
+    <div>
+      <h2>Documenti lunghi: stili, sezioni, sommario</h2>
+      <div class="dur">2 ore · 20′ dimostrazione, 70′ esercizi, 15′ pausa, 15′ ripasso</div>
+    </div>
+  </div>
+
+  <p class="goal">Alla fine dell'incontro i partecipanti gestiscono una relazione di più pagine che si rinumera e si aggiorna da sola quando il contenuto cambia.</p>
+
+  <h3>Cosa mostra il docente</h3>
+  <ul class="plain">
+    <li>Stili Normale, Titolo 1, Titolo 2, Titolo 3: applicarli e soprattutto <em>modificarli</em>, invece di formattare a mano</li>
+    <li>Riquadro di spostamento come mappa del documento</li>
+    <li>Sommario automatico e aggiornamento dei campi</li>
+    <li>Interruzione di pagina (<kbd>Ctrl+Invio</kbd>) contro interruzione di sezione: quando serve l'una e quando l'altra</li>
+    <li>Margini, orientamento, colonne</li>
+    <li>Intestazione e piè di pagina, numeri di pagina, prima pagina diversa</li>
+  </ul>
+
+  <h3>Attività</h3>
+
+  <div class="act">
+    <header><span class="code">A4</span><h4>Rimetti in ordine la relazione</h4><span class="min">35′ · individuale</span></header>
+    <p>Si riceve <code>relazione-disordinata.docx</code>: sei pagine scritte tutte in stile Normale, con i titoli fatti a mano in grassetto, un indice battuto a tastiera e le pagine separate da invii ripetuti. Si applicano Titolo 1, 2 e 3, si modifica lo stile Titolo 1 una sola volta (colore e spazio prima) per propagarlo a tutto il documento, si inserisce il sommario e si numerano le pagine a partire dalla terza.</p>
+    <div class="done"><b>Fatto quando:</b> il Riquadro di spostamento mostra l'albero corretto dei capitoli e il sommario riporta i numeri di pagina giusti.</div>
+  </div>
+
+  <div class="act">
+    <header><span class="code">A5</span><h4>Sposta un capitolo</h4><span class="min">10′ · dimostrativo collettivo</span></header>
+    <p>Dal Riquadro di spostamento si trascina il capitolo 4 prima del 3 e si aggiorna il sommario. È l'esercizio che convince del perché valga la pena usare gli stili: il lavoro che a mano richiederebbe venti minuti qui richiede due secondi.</p>
+    <div class="done"><b>Fatto quando:</b> numerazione dei titoli e sommario risultano coerenti senza alcun ritocco manuale.</div>
+  </div>
+
+  <div class="act">
+    <header><span class="code">A6</span><h4>La pagina orizzontale in mezzo</h4><span class="min">25′ · individuale</span></header>
+    <p>L'Allegato A della stessa relazione contiene una tabella piu' larga della pagina. Va portata su una pagina orizzontale, usando le interruzioni di sezione. Su quella sola sezione l'intestazione deve cambiare testo, mentre la numerazione delle pagine prosegue senza saltare.</p>
+    <div class="done"><b>Fatto quando:</b> solo una pagina è orizzontale, l'intestazione cambia lì e la numerazione resta continua.</div>
+  </div>
+
+  <div class="watch">
+    <h3>Errori da intercettare subito</h3>
+    <ul>
+      <li>Scrivere il sommario a mano</li>
+      <li>Usare invii ripetuti al posto dell'interruzione di pagina</li>
+      <li>Scollegare l'intestazione dalla sezione precedente dimenticando di disattivare «Collega al precedente»</li>
+    </ul>
+  </div>
+</section>
+
+<!-- INCONTRO 3 -->
+<section id="i3">
+  <div class="shead">
+    <div class="num">3</div>
+    <div>
+      <h2>Tabelle, immagini e oggetti</h2>
+      <div class="dur">2 ore · 20′ dimostrazione, 70′ esercizi, 15′ pausa, 15′ ripasso</div>
+    </div>
+  </div>
+
+  <p class="goal">Alla fine dell'incontro i partecipanti inseriscono tabelle e immagini senza che l'impaginazione si sfasci alla riga successiva.</p>
+
+  <h3>Cosa mostra il docente</h3>
+  <ul class="plain">
+    <li>Tabelle: inserimento, stili, unione e divisione celle, larghezza colonne, ripetizione della riga di intestazione sulle pagine successive, ordinamento, somma</li>
+    <li>Conversione di testo in tabella partendo da un elenco separato da tabulazioni</li>
+    <li>Immagini: ridimensionamento proporzionale, ritaglio, compressione, testo alternativo</li>
+    <li>Disposizione del testo: «In linea con il testo» contro «Ravvicinato», e il ruolo dell'ancoraggio</li>
+    <li>Forme, caselle di testo, SmartArt</li>
+    <li>Didascalie numerate e riferimenti incrociati</li>
+  </ul>
+
+  <h3>Attività</h3>
+
+  <div class="act">
+    <header><span class="code">A7</span><h4>Da elenco a listino</h4><span class="min">20′ · individuale</span></header>
+    <p><code>listino.txt</code> arriva come testo separato da tabulazioni: codice, descrizione, categoria, quantità e prezzo unitario. Va convertito in tabella, formattato con uno stile leggibile, ordinato per prezzo decrescente e completato con una colonna Importo calcolata con <code>=PRODUCT(LEFT)</code> e una riga di totale con <code>=SUM(ABOVE)</code>.</p>
+    <div class="done"><b>Fatto quando:</b> il totale cambia dopo aver modificato una quantità e aggiornato i campi con F9.</div>
+  </div>
+
+  <div class="act">
+    <header><span class="code">A8</span><h4>Il verbale con le foto</h4><span class="min">30′ · individuale</span></header>
+    <p>In un verbale di sopralluogo si inseriscono tre fotografie con didascalia numerata e testo alternativo, disposte in modo che il testo scorra accanto. Nel corpo si richiama «vedi Figura 2» con un riferimento incrociato. Alla fine si comprimono le immagini e si confronta il peso del file prima e dopo.</p>
+    <div class="done"><b>Fatto quando:</b> eliminando la Figura 1 le altre si rinumerano da sole e il riferimento nel testo resta corretto.</div>
+  </div>
+
+  <div class="act">
+    <header><span class="code">A9</span><h4>Organigramma in dieci minuti</h4><span class="min">20′ · a coppie</span></header>
+    <p>Con SmartArt si costruisce l'organigramma dell'ufficio: sette caselle su tre livelli, colori coerenti con la lettera dell'incontro 1, poi si salva come immagine per riutilizzarlo altrove.</p>
+    <div class="done"><b>Fatto quando:</b> l'organigramma è modificabile dal riquadro di testo e sta dentro i margini della pagina.</div>
+  </div>
+
+  <div class="watch">
+    <h3>Errori da intercettare subito</h3>
+    <ul>
+      <li>Trascinare l'immagine per un angolo sbagliato e deformarla</li>
+      <li>Allargare una colonna della tabella trascinando il bordo esterno e sballare tutto il resto</li>
+      <li>Lasciare immagini a piena risoluzione in un documento da inviare per e-mail</li>
+    </ul>
+  </div>
+</section>
+
+<!-- INCONTRO 4 -->
+<section id="i4">
+  <div class="shead">
+    <div class="num">4</div>
+    <div>
+      <h2>Revisione, stampa unione, consegna</h2>
+      <div class="dur">2 ore · 20′ dimostrazione, 75′ esercizi, 10′ pausa, 15′ chiusura</div>
+    </div>
+  </div>
+
+  <p class="goal">Alla fine dell'incontro i partecipanti lavorano in due sullo stesso file e producono un invio personalizzato partendo da un elenco Excel.</p>
+
+  <h3>Cosa mostra il docente</h3>
+  <ul class="plain">
+    <li>Commenti: inserire, rispondere, risolvere</li>
+    <li>Revisioni: registrare le modifiche, cambiare visualizzazione, accettare e rifiutare</li>
+    <li>Confronto fra due versioni dello stesso documento</li>
+    <li>Stampa unione da elenco Excel: lettere ed etichette, inserimento campi, anteprima, unione finale</li>
+    <li>Modelli .dotx, contrassegna come finale, protezione con password</li>
+    <li>Esportazione in PDF e opzioni di stampa: fronte-retro, più pagine per foglio</li>
+  </ul>
+
+  <h3>Attività</h3>
+
+  <div class="act">
+    <header><span class="code">A10</span><h4>Scambio di bozze</h4><span class="min">25′ · a coppie</span></header>
+    <p>Ogni partecipante apre il documento del vicino, attiva la registrazione delle revisioni, fa tre modifiche al testo e lascia due commenti con una domanda. Il file torna all'autore, che accetta due modifiche, ne rifiuta una e risponde ai commenti prima di risolverli.</p>
+    <div class="done"><b>Fatto quando:</b> il documento finale non contiene più segni di revisione né commenti aperti.</div>
+  </div>
+
+  <div class="act">
+    <header><span class="code">A11</span><h4>Venti lettere in un colpo solo</h4><span class="min">40′ · individuale</span></header>
+    <p>Partendo da un foglio Excel con venti contatti, si prepara la lettera di convocazione, si inseriscono i campi nome, azienda e indirizzo, si controlla l'anteprima scorrendo i destinatari, si unisce in un nuovo documento e si generano anche le etichette per le buste.</p>
+    <div class="done"><b>Fatto quando:</b> la lettera numero 7 riporta i dati corretti del settimo contatto e nessun segnaposto resta visibile.</div>
+  </div>
+
+  <div class="act">
+    <header><span class="code">A12</span><h4>Consegna finale</h4><span class="min">20′ · individuale</span></header>
+    <p>La lettera intestata dell'incontro 1 viene salvata come modello .dotx nella cartella dei modelli, poi si apre un nuovo documento a partire da quel modello per verificare che funzioni. Infine esportazione in PDF e impostazione della stampa fronte-retro.</p>
+    <div class="done"><b>Fatto quando:</b> il modello compare fra quelli personali e il PDF conserva sommario e numeri di pagina.</div>
+  </div>
+
+  <div class="watch">
+    <h3>Se avanza tempo: prova conclusiva</h3>
+    <ul>
+      <li>Fascicolo di sei pagine con frontespizio, sommario automatico, una tabella, una figura con didascalia, intestazione e piè di pagina, esportato in PDF. Trenta minuti, senza aiuto del docente.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- PREPARAZIONE -->
+<section id="prep">
+  <div class="shead">
+    <div class="num">+</div>
+    <div>
+      <h2>Materiali da preparare</h2>
+      <div class="dur">Da sistemare prima del primo incontro</div>
+    </div>
+  </div>
+
+  <div class="grid2">
+    <div>
+      <h3>File nella cartella condivisa</h3>
+      <ul class="plain">
+        <li><code>testo-grezzo.txt</code> e una pagina web da cui copiare — A2, A3</li>
+        <li><code>relazione-disordinata.docx</code>, sei pagine in Normale, con tabella larga in allegato — A4, A5, A6</li>
+        <li><code>listino.txt</code>, 19 articoli separati da tabulazioni — A7</li>
+        <li><code>verbale.docx</code> e tre foto ad alta risoluzione — A8</li>
+        <li><code>contatti.xlsx</code>, 20 destinatari con titolo, nome, cognome, azienda, indirizzo, CAP, città, provincia, e-mail — A11</li>
+        <li><code>modello-lettera.pdf</code> da stampare e consegnare in aula — A3</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Aula</h3>
+      <ul class="plain">
+        <li>Una postazione a testa con la stessa versione di Word e la stessa lingua dell'interfaccia</li>
+        <li>Proiettore, e una copia del docente visibile da tutti i posti</li>
+        <li>Foglio stampato con le scorciatoie, consegnato al primo incontro</li>
+        <li>Diritti di scrittura nella cartella dei modelli per A12</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3>Scorciatoie da consegnare il primo giorno</h3>
+  <table>
+    <tr><th>Comando</th><th>Tasti</th><th>Comando</th><th>Tasti</th></tr>
+    <tr><td>Salva</td><td><kbd>Ctrl+S</kbd></td><td>Salva con nome</td><td><kbd>F12</kbd></td></tr>
+    <tr><td>Annulla / Ripristina</td><td><kbd>Ctrl+Z</kbd> <kbd>Ctrl+Y</kbd></td><td>Ripeti l'ultima azione</td><td><kbd>F4</kbd></td></tr>
+    <tr><td>Segni di formattazione</td><td><kbd>Ctrl+Maiusc+8</kbd></td><td>Interruzione di pagina</td><td><kbd>Ctrl+Invio</kbd></td></tr>
+    <tr><td>Trova / Sostituisci</td><td><kbd>Ctrl+F</kbd> <kbd>Ctrl+H</kbd></td><td>Incolla solo testo</td><td><kbd>Ctrl+Maiusc+V</kbd></td></tr>
+    <tr><td>Copia formato</td><td><kbd>Ctrl+Maiusc+C</kbd></td><td>Applica formato</td><td><kbd>Ctrl+Maiusc+V</kbd></td></tr>
+    <tr><td>Seleziona tutto</td><td><kbd>Ctrl+A</kbd></td><td>Lettere dei comandi sulla barra</td><td><kbd>Alt</kbd></td></tr>
+  </table>
+
+  <h3>Come valutare senza dare voti</h3>
+  <p>Una griglia osservativa per partecipante, compilata dal docente alla fine di ogni incontro con tre livelli: lo fa da solo, lo fa con un suggerimento, non lo fa ancora.</p>
+  <table>
+    <tr><th>Competenza</th><th>Verificata in</th></tr>
+    <tr><td>Formatta paragrafi senza spazi e invii superflui</td><td>A3</td></tr>
+    <tr><td>Applica e modifica uno stile di titolo</td><td>A4</td></tr>
+    <tr><td>Genera e aggiorna un sommario</td><td>A4, A5</td></tr>
+    <tr><td>Usa le interruzioni di sezione</td><td>A6</td></tr>
+    <tr><td>Costruisce una tabella leggibile con totale calcolato</td><td>A7</td></tr>
+    <tr><td>Gestisce immagini e didascalie numerate</td><td>A8</td></tr>
+    <tr><td>Lavora con revisioni e commenti</td><td>A10</td></tr>
+    <tr><td>Porta a termine una stampa unione</td><td>A11</td></tr>
+  </table>
+</section>
+
+<footer>
+  Programma in quattro incontri da due ore. I tempi delle attività sono indicativi: con un gruppo lento conviene sacrificare A9 e A12 piuttosto che accorciare A4 e A11, che sono il cuore del corso.
+</footer>
+
+</div>
+</body>
+</html>
