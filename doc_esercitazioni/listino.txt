@@ -1,0 +1,20 @@
+﻿Codice	Descrizione	Categoria	Quantita'	Prezzo unitario
+ART-1042	Risma carta A4 80 g, 500 fogli	Cancelleria	120	4,90
+ART-1078	Toner nero compatibile serie XR	Consumabili	18	38,50
+ART-1103	Raccoglitore ad anelli dorso 7 cm	Archiviazione	65	3,20
+ART-1155	Etichette adesive 70x37 mm, 100 fogli	Cancelleria	24	11,80
+ART-1190	Scatola archivio cartone 25x35 cm	Archiviazione	90	1,95
+ART-1214	Penna a sfera blu, conf. 50 pezzi	Cancelleria	32	12,40
+ART-1260	Monitor 24 pollici Full HD	Informatica	7	139,00
+ART-1287	Tastiera USB layout italiano	Informatica	15	19,90
+ART-1301	Mouse ottico wireless	Informatica	22	16,50
+ART-1349	Distruggidocumenti a frammenti	Ufficio	3	218,00
+ART-1372	Lampada da tavolo LED	Ufficio	11	34,90
+ART-1408	Sedia operativa con braccioli	Arredo	6	162,00
+ART-1455	Cassettiera su ruote tre cassetti	Arredo	4	98,50
+ART-1490	Evidenziatore giallo, conf. 10 pezzi	Cancelleria	40	6,70
+ART-1523	Blocco note A5 a righe, conf. 5	Cancelleria	55	5,40
+ART-1566	Hub USB 4 porte	Informatica	13	23,90
+ART-1602	Calcolatrice da tavolo 12 cifre	Ufficio	9	27,50
+ART-1648	Nastro adesivo trasparente, conf. 6	Cancelleria	48	8,20
+ART-1677	Cuffie con microfono per call center	Informatica	10	45,00
